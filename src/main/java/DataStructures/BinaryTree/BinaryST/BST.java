@@ -35,7 +35,7 @@ public class BST {
                 node.setRight(insertDataInt(node.getRight(), data));
             }
         }
-        count++;
+ //       count++;
         return node;
     }
 

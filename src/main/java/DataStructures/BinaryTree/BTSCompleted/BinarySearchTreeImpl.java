@@ -4,6 +4,8 @@ public class BinarySearchTreeImpl {
 
     private Node root;
     private int count = 0;
+    private Node printLeft;
+    private Node printRight;
 
     public boolean isEmpty() {
         return (this.root == null);
@@ -61,7 +63,7 @@ public class BinarySearchTreeImpl {
     }
 
 
-    private Node deleteNode(Node root, Integer data) {
+    private Node deleteNode(Node root, int data) {
         if (root == null){
             return root;}
 
@@ -124,15 +126,49 @@ public class BinarySearchTreeImpl {
     }
 
 
-        public void inOrderTraversal () {
-            doInOrder(this.root);
-        }
 
-        private void doInOrder (Node root){
+    //Inorder (Left, Root, Right)
 
-            if (root == null) return;
-            doInOrder(root.getLeft());
-            System.out.print(root.getData() + " ");
-            doInOrder(root.getRight());
+
+
+    //Preorder (Root, Left, Right)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public synchronized void preOrder(Node root){
+        if (root == null){
+            System.out.println(root.getData());
+            return;}
+            else {
+            BinarySearchTreeImpl object = new BinarySearchTreeImpl();
+            synchronized (this) {
+                preOrder(object.printLeft);
+                preOrder(object.printRight);
+            }
         }
     }
+
+    public Node printLeft(Node root){
+        root = root.getLeft();
+        System.out.println(root);
+        return printLeft(root);
+    }
+
+
+    public Node printRight(Node root){
+        root = root.getRight();
+        System.out.println(root);
+        return printRight(root);
+    }
+}
